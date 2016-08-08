@@ -8,10 +8,15 @@ define(function(require) {
     ListCollection = Backbone.Collection.extend({
         model: ListModel,
 
+        initialize: function() {
+            window.localStorage.setItem('contacts', JSON.stringify(contacts.response));
+        },
+
         fetch: function () {
-            var dfd = $.Deferred();
-            this.reset(contacts.response);
-            return dfd.resolve(contacts.response);
+            var dfd = $.Deferred(),
+                contacts = JSON.parse(window.localStorage.getItem('contacts'));
+            this.reset(contacts);
+            return dfd.resolve(contacts);
         }
     });
 

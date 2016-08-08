@@ -38,16 +38,16 @@ define(function(require){
                 listItems,
                 listItemDetailsView;
 
-            listItemDetailsView = new ListItemDetailsView();
-
             this.collection.fetch().done(function(response) {
                 listItems = response;
                 item = e ?
-                    response.filter(function(i){ return i.id == e.currentTarget.dataset.itemId; })[0] :
-                    response[0];
+                    listItems.filter(function(i){ return i.id == e.currentTarget.dataset.itemId; })[0] :
+                    listItems[0];
+
+                listItemDetailsView = new ListItemDetailsView({model: this.collection.get(item.id)});
+
                 $listDetailsEl.html(listItemDetailsView.render(item).$el);
             }.bind(this));
-
         }
     });
 

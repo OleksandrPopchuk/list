@@ -17,7 +17,7 @@ Handlebars.registerPartial("list.item.details.hbs", this["List"]["list.item.deta
     + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
     + "</span>\r\n        <span class=\"last-name\">"
     + alias4(((helper = (helper = helpers.lastName || (depth0 != null ? depth0.lastName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"lastName","hash":{},"data":data}) : helper)))
-    + "</span>\r\n    </span>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label phone-label\">Phone: </span>\r\n    <span class=\"phone\">"
+    + "</span>\r\n    </span>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label phone-label\">Phone: </span>\r\n    <span class=\"phone fn-edit-phone\">"
     + alias4(((helper = (helper = helpers.phone || (depth0 != null ? depth0.phone : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"phone","hash":{},"data":data}) : helper)))
     + "</span>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label email-label\">Email: </span>\r\n    <a href=\"mailto:"
     + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
