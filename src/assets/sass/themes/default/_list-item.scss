@@ -14,7 +14,12 @@
         border-radius: 50%;
     }
 
-    .phone-label, .email-label {
+    .label {
+        padding-right: 5px;
         color: #898989;
+    }
+
+    .name {
+        font-weight: bold;
     }
 }

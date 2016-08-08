@@ -6,24 +6,48 @@ Handlebars.registerPartial("home.view.hbs", this["List"]["home.view.hbs"] = Hand
     return "<div class=\"fn-home-static-module\">\r\n    <h1 class=\"page-heading\">Welcome to the Contacts List application</h1>\r\n\r\n    <a href=\"#\" data-url=\"list\">Go to Contacts List</a>\r\n</div>";
 },"useData":true}));
 
-Handlebars.registerPartial("list.item.hbs", this["List"]["list.item.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+Handlebars.registerPartial("list.item.details.hbs", this["List"]["list.item.details.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<div class=\"list-item-row\">\r\n    <img class=\"photo\" src=\"assets/imgs/contacts/"
     + alias4(((helper = (helper = helpers.photo || (depth0 != null ? depth0.photo : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"photo","hash":{},"data":data}) : helper)))
     + "\" alt=\""
     + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
-    + "\">\r\n    <span class=\"first-name\">"
+    + "\">\r\n    <span class=\"name\">\r\n        <span class=\"first-name\">"
     + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
-    + "</span>\r\n    <span class=\"last-name\">"
+    + "</span>\r\n        <span class=\"last-name\">"
     + alias4(((helper = (helper = helpers.lastName || (depth0 != null ? depth0.lastName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"lastName","hash":{},"data":data}) : helper)))
-    + "</span>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"phone-label\">Phone: </span>\r\n    <span class=\"phone\">"
+    + "</span>\r\n    </span>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label phone-label\">Phone: </span>\r\n    <span class=\"phone\">"
     + alias4(((helper = (helper = helpers.phone || (depth0 != null ? depth0.phone : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"phone","hash":{},"data":data}) : helper)))
-    + "</span>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"email-label\">Email: </span>\r\n    <a href=\"mailto:"
+    + "</span>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label email-label\">Email: </span>\r\n    <a href=\"mailto:"
     + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
     + "\" class=\"email\">"
     + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
-    + "</a>\r\n</div>\r\n";
+    + "</a>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label city-label\">City: </span>\r\n    <span class=\"city\">"
+    + alias4(((helper = (helper = helpers.city || (depth0 != null ? depth0.city : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"city","hash":{},"data":data}) : helper)))
+    + "</span>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label bio-label\">Bio: </span>\r\n    <span class=\"bio\">"
+    + alias4(((helper = (helper = helpers.bio || (depth0 != null ? depth0.bio : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"bio","hash":{},"data":data}) : helper)))
+    + "</span>\r\n</div>";
+},"useData":true}));
+
+Handlebars.registerPartial("list.item.hbs", this["List"]["list.item.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<li class=\"list-item fn-list-item\">\r\n    <div class=\"list-item-row\">\r\n        <img class=\"photo\" src=\"assets/imgs/contacts/"
+    + alias4(((helper = (helper = helpers.photo || (depth0 != null ? depth0.photo : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"photo","hash":{},"data":data}) : helper)))
+    + "\" alt=\""
+    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
+    + "\">\r\n        <span class=\"name\">\r\n        <span class=\"first-name\">"
+    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
+    + "</span>\r\n        <span class=\"last-name\">"
+    + alias4(((helper = (helper = helpers.lastName || (depth0 != null ? depth0.lastName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"lastName","hash":{},"data":data}) : helper)))
+    + "</span>\r\n    </span>\r\n    </div>\r\n    <div class=\"list-item-row\">\r\n        <span class=\"label phone-label\">Phone: </span>\r\n        <span class=\"phone\">"
+    + alias4(((helper = (helper = helpers.phone || (depth0 != null ? depth0.phone : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"phone","hash":{},"data":data}) : helper)))
+    + "</span>\r\n    </div>\r\n    <div class=\"list-item-row\">\r\n        <span class=\"label email-label\">Email: </span>\r\n        <a href=\"mailto:"
+    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
+    + "\" class=\"email\">"
+    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
+    + "</a>\r\n    </div>\r\n</li>\r\n";
 },"useData":true}));
 
 Handlebars.registerPartial("list.view.hbs", this["List"]["list.view.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {

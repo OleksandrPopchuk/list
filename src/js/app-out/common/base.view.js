@@ -8,7 +8,7 @@ define(function(require) {
         },
 
         doNavigate: function(e){
-            var url = e.currentTarget.dataset.url;
+            var url = e.currentTarget.dataset.url || e.currentTarget.href;
 
             if (url.indexOf('mailto:') !== 0) {
                 e.preventDefault();

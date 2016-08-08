@@ -29,11 +29,15 @@ define(function(require){
         },
 
         render: function(){
+            var listItemView = new ListItemView();
             this.$el.html(this.template());
 
             this.collection.fetch().done(function(response) {
+
                 this.listItems = response;
                 this.showListItems();
+
+                listItemView.showItemDetails(null, this.$el.find('.fn-contact-details'));
             }.bind(this));
 
             return this;

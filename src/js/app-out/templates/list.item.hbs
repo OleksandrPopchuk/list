@@ -1,13 +1,17 @@
-<div class="list-item-row">
-    <img class="photo" src="assets/imgs/contacts/{{ photo }}" alt="{{ firstName }}">
-    <span class="first-name">{{ firstName }}</span>
-    <span class="last-name">{{ lastName }}</span>
-</div>
-<div class="list-item-row">
-    <span class="phone-label">Phone: </span>
-    <span class="phone">{{ phone }}</span>
-</div>
-<div class="list-item-row">
-    <span class="email-label">Email: </span>
-    <a href="mailto:{{ email }}" class="email">{{ email }}</a>
-</div>
+<li class="list-item fn-list-item">
+    <div class="list-item-row">
+        <img class="photo" src="assets/imgs/contacts/{{ photo }}" alt="{{ firstName }}">
+        <span class="name">
+        <span class="first-name">{{ firstName }}</span>
+        <span class="last-name">{{ lastName }}</span>
+    </span>
+    </div>
+    <div class="list-item-row">
+        <span class="label phone-label">Phone: </span>
+        <span class="phone">{{ phone }}</span>
+    </div>
+    <div class="list-item-row">
+        <span class="label email-label">Email: </span>
+        <a href="mailto:{{ email }}" class="email">{{ email }}</a>
+    </div>
+</li>
