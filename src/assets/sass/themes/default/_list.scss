@@ -1,0 +1,19 @@
+.contacts-wrapper {
+    @include clearfix;
+
+    height: 700px;
+}
+
+.contact-details {
+    float: left;
+    width: 45%;
+
+}
+
+.contacts-list {
+    float: right;
+    width: 45%;
+    height: 90%;
+    margin-bottom: 30px;
+    overflow-y: scroll;
+}
