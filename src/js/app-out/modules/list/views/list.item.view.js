@@ -21,7 +21,12 @@ define(function(require){
         },
 
         initialize: function() {
-
+            this.listenTo(this.collection, 'change', function(model) {
+                if (this.model.id === model.id) {
+                    this.render(model.attributes);
+                    this.setActiveListItem(model.id);
+                }
+            });
         },
 
         render: function(item){
@@ -47,7 +52,14 @@ define(function(require){
                 listItemDetailsView = new ListItemDetailsView({model: this.collection.get(item.id)});
 
                 $listDetailsEl.html(listItemDetailsView.render(item).$el);
+
+                this.setActiveListItem(item.id);
             }.bind(this));
+        },
+
+        setActiveListItem: function(id) {
+            $('.fn-list-item').removeClass('active');
+            $('.fn-list-item[data-item-id=' + id + ']').addClass('active');
         }
     });
 

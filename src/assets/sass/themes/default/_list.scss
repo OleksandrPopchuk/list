@@ -6,13 +6,15 @@
 
 .contact-details {
     float: left;
-    width: 55%;
+    width: 60%;
 }
 
 .contacts-list {
     float: right;
-    width: 40%;
+    width: 35%;
     height: 90%;
     margin-bottom: 30px;
     overflow-y: scroll;
+    border-left: 1px solid #ddd;
+    padding: 0 10px;
 }

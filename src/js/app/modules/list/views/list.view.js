@@ -24,15 +24,11 @@ define(function(require){
             return _.extend(BaseView.prototype.events, this.additionalEvents);
         },
 
-        initialize: function() {
-            this.collection.on('sync', this.render.bind(this));
-        },
-
         render: function(){
-            var listItemView = new ListItemView();
             this.$el.html(this.template());
 
             this.collection.fetch().done(function(response) {
+                var listItemView = new ListItemView({model: this.collection.get(response[0].id)});
 
                 this.listItems = response;
                 this.showListItems();
@@ -47,11 +43,15 @@ define(function(require){
             var $listEl = this.$el.find('.fn-contacts-list'),
                 listItemView;
 
-            this.listItems.forEach(function(listItem) {
-                listItemView = new ListItemView();
+            this.listItems.forEach(function(item, index) {
+                listItemView = new ListItemView({model: this.collection.get(item.id)});
 
-                $listEl.append(listItemView.render(listItem).$el);
-            });
+                $listEl.append(listItemView.render(item).$el);
+
+                if (index === 0) {
+                    this.$el.find('.fn-list-item').addClass('active');
+                }
+            }.bind(this));
         }
     });
 

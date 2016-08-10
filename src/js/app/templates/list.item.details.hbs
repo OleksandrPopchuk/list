@@ -1,23 +1,37 @@
 <div class="list-item-row">
-    <img class="photo" src="assets/imgs/contacts/{{ photo }}" alt="{{ firstName }}">
-    <span class="name">
+    <button class="contact-edit-button fn-contact-edit">Edit contact</button>
+    <button class="contact-save-button fn-contact-save hidden">Save contact</button>
+    <button class="contact-cancel-button fn-contact-cancel hidden">Cancel</button>
+    <div class="photo-wrapper fn-edit-photo">
+        <img class="photo" src="assets/imgs/contacts/{{ photo }}" alt="{{ firstName }}">
+        <input type="file" class="photo-upload fn-photo-upload">
+    </div>
+    <span class="name data-span">
         <span class="first-name">{{ firstName }}</span>
         <span class="last-name">{{ lastName }}</span>
     </span>
+    <div class="name-edit-inputs">
+        <input type="text" title="First Name" class="fn-edit-input hidden" value="{{ firstName }}" data-field="firstName">
+        <input type="text" title="Last Name" class="fn-edit-input hidden" value="{{ lastName }}" data-field="lastName">
+    </div>
 </div>
 <div class="list-item-row">
     <span class="label phone-label">Phone: </span>
-    <span class="phone fn-edit-phone">{{ phone }}</span>
+    <span class="phone data-span">{{ phone }}</span>
+    <input type="text" title="Phone" class="fn-edit-input hidden" value="{{ phone }}" data-field="phone">
 </div>
 <div class="list-item-row">
     <span class="label email-label">Email: </span>
-    <a href="mailto:{{ email }}" class="email">{{ email }}</a>
+    <a href="mailto:{{ email }}" class="email data-span">{{ email }}</a>
+    <input type="text" title="Email" class="fn-edit-input hidden" value="{{ email }}" data-field="email">
 </div>
 <div class="list-item-row">
     <span class="label city-label">City: </span>
-    <span class="city">{{ city }}</span>
+    <span class="city data-span">{{ city }}</span>
+    <input type="text" title="City" class="fn-edit-input hidden" value="{{ city }}" data-field="city">
 </div>
 <div class="list-item-row">
     <span class="label bio-label">Bio: </span>
-    <span class="bio">{{ bio }}</span>
+    <span class="bio data-span">{{ bio }}</span>
+    <textarea title="Bio" class="bio-textarea fn-edit-input hidden" data-field="bio">{{ bio }}</textarea>
 </div>

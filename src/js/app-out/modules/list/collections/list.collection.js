@@ -9,7 +9,9 @@ define(function(require) {
         model: ListModel,
 
         initialize: function() {
-            window.localStorage.setItem('contacts', JSON.stringify(contacts.response));
+            if (!window.localStorage.contacts) {
+                window.localStorage.setItem('contacts', JSON.stringify(contacts.response));
+            }
         },
 
         fetch: function () {

@@ -1,21 +1,130 @@
 .contact-details {
+    position: relative;
+
+    .contact-edit-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        line-height: 40px;
+        margin-top: 10px;
+        padding: 0 10px 0 30px;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            width: 13px;
+            height: 13px;
+            margin-top: -6px;
+            background: url('../imgs/edit.png') center right no-repeat;
+        }
+    }
+
+    .contact-save-button {
+        @extend .contact-edit-button;
+
+        right: 120px;
+
+        &:before {
+            background: url('../imgs/save.png') center right no-repeat;
+        }
+    }
+
+    .contact-cancel-button {
+        @extend .contact-edit-button;
+
+        &:before {
+            background: url('../imgs/cancel.png') center right no-repeat;
+        }
+    }
+
     .list-item-row {
+        display: table;
+        width: 100%;
         padding-bottom: 10px;
+        line-height: 22px;
+    }
+
+    .photo-wrapper {
+        position: relative;
+        display: table-cell;
+        width: 300px;
+
+        &.editable {
+            cursor: pointer;
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 80px;
+                height: 80px;
+                background: rgba(255, 255, 255, 0.7) url('../imgs/edit.png') top 33px right 33px no-repeat;
+            }
+
+            &:hover {
+                &:after {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
     }
 
     .photo {
         width: 300px;
-        margin: 10px 30px 20px 0;
-        vertical-align: middle;
+    }
+
+    .photo-upload {
+        position: absolute;
+        top: 0;
+        left: 0;
+        visibility: hidden;
     }
 
     .label {
+        display: inline-block;
+        width: 50px;
         padding-right: 5px;
         color: #898989;
     }
 
     .name {
+        display: table-cell;
+        width: 100%;
+        padding-left: 30px;
         font-size: 24px;
         font-weight: bold;
+        vertical-align: middle;
+    }
+
+    .name-edit-inputs {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+
+        input {
+            max-width: 40%;
+            font-size: 20px;
+        }
+    }
+
+    .bio-label {
+        float: left;
+    }
+
+    .bio.data-span {
+        float: left;
+        max-width: calc(100% - 65px);
+    }
+
+    .bio-textarea {
+        width: calc(100% - 65px);
+        height: 200px;
+        vertical-align: top;
     }
 }

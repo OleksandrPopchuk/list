@@ -34,7 +34,7 @@ define(function(require) {
                 }
             }
 
-            items[indexInArray].phone = model.attributes.phone;
+            items[indexInArray] = model.attributes;
 
             window.localStorage.contacts = JSON.stringify(items);
 

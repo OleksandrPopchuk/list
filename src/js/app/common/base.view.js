@@ -1,5 +1,6 @@
 define(function(require) {
     var Backbone = require('backbone'),
+        _ = require('underscore'),
         BaseView;
 
     BaseView = Backbone.View.extend({

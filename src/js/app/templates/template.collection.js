@@ -9,25 +9,37 @@ Handlebars.registerPartial("home.view.hbs", this["List"]["home.view.hbs"] = Hand
 Handlebars.registerPartial("list.item.details.hbs", this["List"]["list.item.details.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<div class=\"list-item-row\">\r\n    <img class=\"photo\" src=\"assets/imgs/contacts/"
+  return "<div class=\"list-item-row\">\r\n    <button class=\"contact-edit-button fn-contact-edit\">Edit contact</button>\r\n    <button class=\"contact-save-button fn-contact-save hidden\">Save contact</button>\r\n    <button class=\"contact-cancel-button fn-contact-cancel hidden\">Cancel</button>\r\n    <div class=\"photo-wrapper fn-edit-photo\">\r\n        <img class=\"photo\" src=\"assets/imgs/contacts/"
     + alias4(((helper = (helper = helpers.photo || (depth0 != null ? depth0.photo : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"photo","hash":{},"data":data}) : helper)))
     + "\" alt=\""
     + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
-    + "\">\r\n    <span class=\"name\">\r\n        <span class=\"first-name\">"
+    + "\">\r\n        <input type=\"file\" class=\"photo-upload fn-photo-upload\">\r\n    </div>\r\n    <span class=\"name data-span\">\r\n        <span class=\"first-name\">"
     + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
     + "</span>\r\n        <span class=\"last-name\">"
     + alias4(((helper = (helper = helpers.lastName || (depth0 != null ? depth0.lastName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"lastName","hash":{},"data":data}) : helper)))
-    + "</span>\r\n    </span>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label phone-label\">Phone: </span>\r\n    <span class=\"phone fn-edit-phone\">"
+    + "</span>\r\n    </span>\r\n    <div class=\"name-edit-inputs\">\r\n        <input type=\"text\" title=\"First Name\" class=\"fn-edit-input hidden\" value=\""
+    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
+    + "\" data-field=\"firstName\">\r\n        <input type=\"text\" title=\"Last Name\" class=\"fn-edit-input hidden\" value=\""
+    + alias4(((helper = (helper = helpers.lastName || (depth0 != null ? depth0.lastName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"lastName","hash":{},"data":data}) : helper)))
+    + "\" data-field=\"lastName\">\r\n    </div>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label phone-label\">Phone: </span>\r\n    <span class=\"phone data-span\">"
     + alias4(((helper = (helper = helpers.phone || (depth0 != null ? depth0.phone : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"phone","hash":{},"data":data}) : helper)))
-    + "</span>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label email-label\">Email: </span>\r\n    <a href=\"mailto:"
+    + "</span>\r\n    <input type=\"text\" title=\"Phone\" class=\"fn-edit-input hidden\" value=\""
+    + alias4(((helper = (helper = helpers.phone || (depth0 != null ? depth0.phone : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"phone","hash":{},"data":data}) : helper)))
+    + "\" data-field=\"phone\">\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label email-label\">Email: </span>\r\n    <a href=\"mailto:"
     + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
-    + "\" class=\"email\">"
+    + "\" class=\"email data-span\">"
     + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
-    + "</a>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label city-label\">City: </span>\r\n    <span class=\"city\">"
+    + "</a>\r\n    <input type=\"text\" title=\"Email\" class=\"fn-edit-input hidden\" value=\""
+    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
+    + "\" data-field=\"email\">\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label city-label\">City: </span>\r\n    <span class=\"city data-span\">"
     + alias4(((helper = (helper = helpers.city || (depth0 != null ? depth0.city : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"city","hash":{},"data":data}) : helper)))
-    + "</span>\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label bio-label\">Bio: </span>\r\n    <span class=\"bio\">"
+    + "</span>\r\n    <input type=\"text\" title=\"City\" class=\"fn-edit-input hidden\" value=\""
+    + alias4(((helper = (helper = helpers.city || (depth0 != null ? depth0.city : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"city","hash":{},"data":data}) : helper)))
+    + "\" data-field=\"city\">\r\n</div>\r\n<div class=\"list-item-row\">\r\n    <span class=\"label bio-label\">Bio: </span>\r\n    <span class=\"bio data-span\">"
     + alias4(((helper = (helper = helpers.bio || (depth0 != null ? depth0.bio : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"bio","hash":{},"data":data}) : helper)))
-    + "</span>\r\n</div>";
+    + "</span>\r\n    <textarea title=\"Bio\" class=\"bio-textarea fn-edit-input hidden\" data-field=\"bio\">"
+    + alias4(((helper = (helper = helpers.bio || (depth0 != null ? depth0.bio : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"bio","hash":{},"data":data}) : helper)))
+    + "</textarea>\r\n</div>";
 },"useData":true}));
 
 Handlebars.registerPartial("list.item.hbs", this["List"]["list.item.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
