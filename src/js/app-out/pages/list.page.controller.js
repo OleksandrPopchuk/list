@@ -1,18 +1,1 @@
-define(function(require){
-    var Backbone = require('backbone'),
-        _ = require('underscore'),
-        $ = require('jquery'),
-        ViewUtil = require('utils/view.util'),
-        ListView = require('modules/list/views/list.view'),
-        ListController;
-
-    ListController = Backbone.View.extend({
-        action: function(){
-            this.$main = $(window.globals.regions.main);
-
-            this.$main.append(ViewUtil.showView(new ListView()));
-        }
-    });
-
-    return new ListController();
-});
+define(function(a){var b,c=a("backbone"),d=(a("underscore"),a("jquery")),e=a("utils/view.util"),f=a("modules/list/views/list.view");return new(b=c.View.extend({action:function(){this.$main=d(window.globals.regions.main),this.$main.append(e.showView(new f))}}))});
