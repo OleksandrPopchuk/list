@@ -1,10 +1,23 @@
 .contact-details {
     position: relative;
 
+    .contact-details-overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        padding: 20% 0;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.9)
+    }
+
     .contact-edit-button {
         position: absolute;
         top: 0;
         right: 0;
+        min-width: 100px;
         line-height: 40px;
         margin-top: 10px;
         padding: 0 10px 0 30px;
@@ -23,6 +36,28 @@
         }
     }
 
+    .contact-remove-confirm {
+        @extend .contact-edit-button;
+
+        position: relative;
+        left: -20px;
+
+        &:before {
+            background: url('../imgs/remove.png') center right no-repeat;
+        }
+    }
+
+    .contact-remove-cancel {
+        @extend .contact-edit-button;
+
+        position: relative;
+        right: -20px;
+
+        &:before {
+            background: url('../imgs/cancel.png') center right no-repeat;
+        }
+    }
+
     .contact-save-button {
         @extend .contact-edit-button;
 
@@ -38,6 +73,16 @@
 
         &:before {
             background: url('../imgs/cancel.png') center right no-repeat;
+        }
+    }
+
+    .contact-remove-button {
+        @extend .contact-edit-button;
+
+        right: 120px;
+
+        &:before {
+            background: url('../imgs/remove.png') center right no-repeat;
         }
     }
 

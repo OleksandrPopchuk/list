@@ -24,16 +24,24 @@ define(function(require){
             return _.extend(BaseView.prototype.events, this.additionalEvents);
         },
 
+        initialize: function() {
+            this.listenTo(this.collection, 'remove', this.render);
+        },
+
         render: function(){
             this.$el.html(this.template());
 
             this.collection.fetch().done(function(response) {
-                var listItemView = new ListItemView({model: this.collection.get(response[0].id)});
+                if (response.length) {
+                    var listItemView = new ListItemView({model: this.collection.get(response[0].id)});
 
-                this.listItems = response;
-                this.showListItems();
+                    this.listItems = response;
+                    this.showListItems();
 
-                listItemView.showItemDetails(null, this.$el.find('.fn-contact-details'));
+                    listItemView.showItemDetails(null, this.$el.find('.fn-contact-details'));
+                } else {
+                    this.showEmptyList();
+                }
             }.bind(this));
 
             return this;
@@ -52,6 +60,15 @@ define(function(require){
                     this.$el.find('.fn-list-item').addClass('active');
                 }
             }.bind(this));
+        },
+
+        showEmptyList: function() {
+            var $listEl = this.$el.find('.fn-contacts-list'),
+                $contactDetailsEl = this.$el.find('.fn-contact-details');
+
+            $listEl.html('No items to display');
+
+            $contactDetailsEl.html('No contact selected');
         }
     });
 

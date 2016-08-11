@@ -16,29 +16,8 @@ define(function(require) {
 
         idAttribute: 'id',
 
-        sync: function(method, model, options) {
-            if (method === 'update') {
-                return this.saveItem(model, options);
-            }
-        },
+        sync: function() {
 
-        saveItem: function(model, options) {
-            var items = JSON.parse(window.localStorage.contacts),
-                i,
-                indexInArray;
-
-            for (i = 0; i < items.length; i++ ) {
-                if (items[i].id == model.attributes.id) {
-                    indexInArray = i;
-                    break;
-                }
-            }
-
-            items[indexInArray] = model.attributes;
-
-            window.localStorage.contacts = JSON.stringify(items);
-
-            this.trigger('itemUpdated');
         }
     });
 

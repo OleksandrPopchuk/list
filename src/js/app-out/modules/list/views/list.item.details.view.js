@@ -4,7 +4,6 @@ define(function(require){
         templateCollection = require('template.collection'),
         BaseView = require('common/base.view'),
         ListCollection = require('modules/list/collections/list.collection'),
-        ListModel = require('modules/list/models/list.model'),
         ListDetailsView;
 
     ListDetailsView = BaseView.extend({
@@ -16,7 +15,12 @@ define(function(require){
 
         photoChanged: false,
 
+        overlay: null,
+
         additionalEvents: {
+            'click .fn-contact-remove': 'handleRemoveContact',
+            'click .fn-contact-remove-cancel': 'removeContactCancel',
+            'click .fn-contact-remove-confirm': 'removeContact',
             'click .fn-contact-edit': 'activateEditMode',
             'click .fn-contact-cancel': 'deactivateEditMode',
             'click .fn-contact-save': 'saveContact',
@@ -29,10 +33,8 @@ define(function(require){
         },
 
         initialize: function() {
-            this.listenTo(this.model, 'itemUpdated', function() {
-                var thisItemModel = this.collection.get(this.currentItem.id);
-
-                this.render(thisItemModel.attributes);
+            this.listenTo(this.collection, 'change', function(model) {
+                this.render(model.attributes);
             });
         },
 
@@ -40,6 +42,8 @@ define(function(require){
             this.$el.html(this.template(item));
 
             this.currentItem = item;
+
+            this.overlay = this.$el.find('.fn-contact-details-overlay');
 
             return this;
         },
@@ -49,12 +53,14 @@ define(function(require){
                 $editInputs = this.$el.find('.fn-edit-input'),
                 $dataSpans = this.$el.find('.data-span'),
                 $editButton = this.$el.find('.fn-contact-edit'),
+                $removeButton = this.$el.find('.fn-contact-remove'),
                 $saveButton = this.$el.find('.fn-contact-save'),
                 $cancelButton = this.$el.find('.fn-contact-cancel');
 
             $photoWrapper.addClass('editable');
             $dataSpans.addClass('hidden');
             $editButton.addClass('hidden');
+            $removeButton.addClass('hidden');
             $editInputs.removeClass('hidden');
             $saveButton.removeClass('hidden');
             $cancelButton.removeClass('hidden');
@@ -67,6 +73,7 @@ define(function(require){
                 $editInputs = this.$el.find('.fn-edit-input'),
                 $dataSpans = this.$el.find('.data-span'),
                 $editButton = this.$el.find('.fn-contact-edit'),
+                $removeButton = this.$el.find('.fn-contact-remove'),
                 $saveButton = this.$el.find('.fn-contact-save'),
                 $cancelButton = this.$el.find('.fn-contact-cancel'),
                 srcPath = $photoEl.attr('src').match(/(.*\/)/g);
@@ -76,6 +83,7 @@ define(function(require){
             $photoUploadEl.val('');
             $dataSpans.removeClass('hidden');
             $editButton.removeClass('hidden');
+            $removeButton.removeClass('hidden');
             $editInputs.addClass('hidden');
             $saveButton.addClass('hidden');
             $cancelButton.addClass('hidden');
@@ -89,12 +97,8 @@ define(function(require){
 
             $editInputs.each(function(index) {
                 input = $editInputs[index];
+                value = input.value;
 
-                if (input.nodeName === 'INPUT') {
-                    value = input.value;
-                } else {
-                    value = input.textContent;
-                }
                 this.model.set(input.dataset.field, value);
             }.bind(this));
 
@@ -103,6 +107,7 @@ define(function(require){
             }
 
             this.model.save();
+            this.deactivateEditMode();
         },
 
         editPhoto: function() {
@@ -123,6 +128,18 @@ define(function(require){
             } else {
                 console.log('File uploaded is not an image');
             }
+        },
+
+        handleRemoveContact: function() {
+            this.overlay.removeClass('hidden');
+        },
+
+        removeContactCancel: function() {
+            this.overlay.addClass('hidden');
+        },
+
+        removeContact: function() {
+            this.model.destroy();
         }
     });
 

@@ -12,6 +12,14 @@ define(function(require) {
             if (!window.localStorage.contacts) {
                 window.localStorage.setItem('contacts', JSON.stringify(contacts.response));
             }
+
+            this.listenTo(this, 'change add remove ', function() {
+                this.sync();
+            });
+        },
+
+        sync: function() {
+            window.localStorage.setItem('contacts', JSON.stringify(this.models));
         },
 
         fetch: function () {
