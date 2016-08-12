@@ -1,1 +1,29 @@
-define(function(a){var b,c=a("underscore"),d=(a("jquery"),a("template.collection")),e=a("common/base.view");return b=e.extend({tagName:"div",className:"home-view-wrapper",template:d["home.view.hbs"],additionalEvents:{},events:function(){return c.extend(e.prototype.events,this.additionalEvents)},render:function(){return this.$el.html(this.template()),this}})});
+define(function(require){
+    var _ = require('underscore'),
+        $ = require('jquery'),
+        templateCollection = require('template.collection'),
+        BaseView = require('common/base.view'),
+        HomeView;
+
+    HomeView = BaseView.extend({
+        tagName: 'div',
+
+        className: 'home-view-wrapper',
+
+        template: templateCollection['home.view.hbs'],
+
+        additionalEvents: {},
+
+        events: function() {
+            return _.extend(BaseView.prototype.events, this.additionalEvents);
+        },
+
+        render: function(){
+            this.$el.html(this.template());
+
+            return this;
+        }
+    });
+
+    return HomeView;
+});

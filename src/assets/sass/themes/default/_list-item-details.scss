@@ -18,9 +18,8 @@
         top: 0;
         right: 0;
         min-width: 100px;
-        line-height: 40px;
-        margin-top: 10px;
         padding: 0 10px 0 30px;
+        line-height: 40px;
         font-weight: bold;
         cursor: pointer;
 
@@ -108,7 +107,7 @@
                 right: 0;
                 width: 80px;
                 height: 80px;
-                background: rgba(255, 255, 255, 0.7) url('../imgs/edit.png') top 33px right 33px no-repeat;
+                background: rgba(240, 240, 240, 0.7) url('../imgs/edit.png') top 33px right 33px no-repeat;
             }
 
             &:hover {

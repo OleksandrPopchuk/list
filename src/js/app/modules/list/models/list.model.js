@@ -7,7 +7,7 @@ define(function(require) {
             id: '',
             firstName: '',
             lastName: '',
-            photo: '',
+            photo: 'dummy.png',
             phone: '',
             email: '',
             city: '',

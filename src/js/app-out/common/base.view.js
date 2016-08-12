@@ -1,1 +1,22 @@
-define(function(a){var b,c=a("backbone");a("underscore");return b=c.View.extend({events:{"click a":"doNavigate"},doNavigate:function(a){var b=a.currentTarget.dataset.url||a.currentTarget.href;0!==b.indexOf("mailto:")&&(a.preventDefault(),c.history.navigate(b,{trigger:!0,replace:!0}))}})});
+define(function(require) {
+    var Backbone = require('backbone'),
+        _ = require('underscore'),
+        BaseView;
+
+    BaseView = Backbone.View.extend({
+        events: {
+            'click a': 'doNavigate'
+        },
+
+        doNavigate: function(e){
+            var url = e.currentTarget.dataset.url || e.currentTarget.href;
+
+            if (url.indexOf('mailto:') !== 0) {
+                e.preventDefault();
+                Backbone.history.navigate(url, {trigger: true, replace: true});
+            }
+        }
+    });
+
+    return BaseView;
+});

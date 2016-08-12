@@ -11,9 +11,9 @@ define(function(require){
 
         template: templateCollection['list.item.details.hbs'],
 
-        currentItem: null,
-
         photoChanged: false,
+
+        isNewItem: false,
 
         overlay: null,
 
@@ -33,15 +33,13 @@ define(function(require){
         },
 
         initialize: function() {
-            this.listenTo(this.collection, 'change', function(model) {
+            this.listenTo(this.collection, 'change add', function(model) {
                 this.render(model.attributes);
             });
         },
 
-        render: function(item){
-            this.$el.html(this.template(item));
-
-            this.currentItem = item;
+        render: function(){
+            this.$el.html(this.template(this.model.attributes));
 
             this.overlay = this.$el.find('.fn-contact-details-overlay');
 
@@ -76,7 +74,8 @@ define(function(require){
                 $removeButton = this.$el.find('.fn-contact-remove'),
                 $saveButton = this.$el.find('.fn-contact-save'),
                 $cancelButton = this.$el.find('.fn-contact-cancel'),
-                srcPath = $photoEl.attr('src').match(/(.*\/)/g);
+                srcPath = $photoEl.attr('src').match(/(.*\/)/g),
+                itemId;
 
             $photoWrapper.removeClass('editable');
             $photoEl.attr('src', srcPath + this.model.get('photo'));
@@ -87,6 +86,14 @@ define(function(require){
             $editInputs.addClass('hidden');
             $saveButton.addClass('hidden');
             $cancelButton.addClass('hidden');
+
+            if (this.isNewItem) {
+                itemId = $('.list-item.active').find('.fn-list-item').attr('data-item-id');
+                this.model = this.collection.get(itemId);
+                this.isNewItem = false;
+
+                this.render(this.collection.get(itemId));
+            }
         },
 
         saveContact: function() {
@@ -104,9 +111,16 @@ define(function(require){
 
             if (this.photoChanged) {
                 this.model.set('photo', $photoInput[0].files[0].name);
+                this.photoChanged = false;
             }
 
             this.model.save();
+
+            if (this.isNewItem) {
+                this.collection.add(this.model);
+                this.isNewItem = false;
+            }
+
             this.deactivateEditMode();
         },
 

@@ -1,1 +1,19 @@
-define(function(a){var b={currentView:null,showView:function(a){return null!==this.currentView&&this.currentView.cid!=a.cid&&this.currentView.remove(),this.currentView=a,a.render(),a.$el}};return b});
+define(function(require){
+
+    var ViewUtil = {
+        currentView : null,
+
+        showView : function(view) {
+            if (this.currentView !== null && this.currentView.cid != view.cid) {
+                this.currentView.remove();
+            }
+
+            this.currentView = view;
+            view.render();
+
+            return view.$el;
+        }
+    };
+
+    return ViewUtil;
+});

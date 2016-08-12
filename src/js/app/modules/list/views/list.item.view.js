@@ -10,6 +10,10 @@ define(function(require){
     ListView = BaseView.extend({
         collection: ListCollection,
 
+        tagName: 'li',
+
+        className: 'list-item',
+
         template: templateCollection['list.item.hbs'],
 
         additionalEvents: {
@@ -24,7 +28,7 @@ define(function(require){
             this.listenTo(this.collection, 'change', function(model) {
                 if (this.model.id === model.id) {
                     this.render(model.attributes);
-                    this.setActiveListItem(model.id);
+                    this.setActiveListItem();
                 }
             });
         },
@@ -39,27 +43,23 @@ define(function(require){
 
         showItemDetails: function(e, element) {
             var $listDetailsEl = element || $('.fn-contact-details'),
-                item,
-                listItems,
                 listItemDetailsView;
 
-            this.collection.fetch().done(function(response) {
-                listItems = response;
-                item = e ?
-                    listItems.filter(function(i){ return i.id == e.currentTarget.dataset.itemId; })[0] :
-                    listItems[0];
+            this.collection.fetch().done(function() {
+                listItemDetailsView = new ListItemDetailsView({model: this.collection.get(this.model)});
 
-                listItemDetailsView = new ListItemDetailsView({model: this.collection.get(item.id)});
+                $listDetailsEl.html(listItemDetailsView.render().$el);
 
-                $listDetailsEl.html(listItemDetailsView.render(item).$el);
-
-                this.setActiveListItem(item.id);
+                this.setActiveListItem();
             }.bind(this));
         },
 
-        setActiveListItem: function(id) {
-            $('.fn-list-item').removeClass('active');
-            $('.fn-list-item[data-item-id=' + id + ']').addClass('active');
+        setActiveListItem: function() {
+            var $listItems = $('.list-item'),
+                itemId = this.collection.get(this.model).id;
+
+            $listItems.removeClass('active');
+            $listItems.find('[data-item-id=' + itemId +']').parent().addClass('active');
         }
     });
 
