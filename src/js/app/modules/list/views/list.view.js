@@ -18,8 +18,6 @@ define(function(require){
 
         className: 'list-view-wrapper',
 
-        isListEmpty: false,
-
         template: templateCollection['list.view.hbs'],
 
         additionalEvents: {
@@ -31,11 +29,15 @@ define(function(require){
         },
 
         initialize: function() {
-            this.listenTo(this.collection, 'remove', this.render);
+            this.listenTo(this.collection, 'remove change fetch', this.render);
             this.listenTo(this.collection, 'add', function(model) {
                 var thisModel = this.collection.get(model),
                     listItemView = new ListItemView({model: thisModel}),
                     $listEl = this.$el.find('.fn-contacts-list');
+
+                if (this.collection.length === 1) {
+                    $listEl.empty();
+                }
 
                 $listEl.append(listItemView.render(thisModel.attributes).$el);
                 listItemView.showItemDetails();
@@ -46,7 +48,7 @@ define(function(require){
             this.$el.html(this.template());
 
             this.collection.fetch().done(function(response) {
-                if (response.length) {
+                if (response && response.length) {
                     var listItemView = new ListItemView({model: this.collection.get(response[0].id)});
 
                     this.listItems = response;
@@ -64,11 +66,6 @@ define(function(require){
         showListItems: function() {
             var $listEl = this.$el.find('.fn-contacts-list'),
                 listItemView;
-
-            if (this.isListEmpty) {
-                $listEl.clear();
-                this.isListEmpty = false;
-            }
 
             this.listItems.forEach(function(item, index) {
                 listItemView = new ListItemView({model: this.collection.get(item.id)});
@@ -88,8 +85,6 @@ define(function(require){
             $listEl.html('No items to display');
 
             $contactDetailsEl.html('No contact selected');
-
-            this.isListEmpty = true;
         },
 
         addNewContact: function() {

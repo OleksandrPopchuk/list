@@ -74,11 +74,10 @@ define(function(require){
                 $removeButton = this.$el.find('.fn-contact-remove'),
                 $saveButton = this.$el.find('.fn-contact-save'),
                 $cancelButton = this.$el.find('.fn-contact-cancel'),
-                srcPath = $photoEl.attr('src').match(/(.*\/)/g),
                 itemId;
 
             $photoWrapper.removeClass('editable');
-            $photoEl.attr('src', srcPath + this.model.get('photo'));
+            $photoEl.attr('src', this.model.get('photo'));
             $photoUploadEl.val('');
             $dataSpans.removeClass('hidden');
             $editButton.removeClass('hidden');

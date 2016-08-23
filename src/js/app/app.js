@@ -3,7 +3,8 @@
  */
 define(function(require){
    var Backbone = require('backbone'),
-       Router = require('app.router');
+       Router = require('app.router'),
+       vkHelper = require('helpers/vk.helper');
 
     var App = function(){};
 
@@ -12,6 +13,8 @@ define(function(require){
         Backbone.history.start({
            pushState: false
         });
+
+        vkHelper.init();
     };
 
     return new App();

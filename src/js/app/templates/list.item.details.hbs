@@ -9,7 +9,7 @@
     <button class="contact-save-button fn-contact-save hidden">Save</button>
     <button class="contact-cancel-button fn-contact-cancel hidden">Cancel</button>
     <div class="photo-wrapper fn-edit-photo">
-        <img class="photo" src="assets/imgs/contacts/{{ photo }}" alt="{{ firstName }}">
+        <img class="photo" src="{{ photo }}" alt="{{ firstName }}">
         <input type="file" class="photo-upload fn-photo-upload">
     </div>
     <span class="name data-span">
@@ -22,14 +22,14 @@
     </div>
 </div>
 <div class="list-item-row">
-    <span class="label phone-label">Phone: </span>
-    <span class="phone data-span">{{ phone }}</span>
-    <input type="text" title="Phone" class="fn-edit-input hidden" value="{{ phone }}" data-field="phone">
+    <span class="label bdate-label">Birthday: </span>
+    <span class="bdate data-span">{{ bdate }}</span>
+    <input type="text" title="Birthday" class="fn-edit-input hidden" value="{{ bdate }}" data-field="bdate">
 </div>
 <div class="list-item-row">
-    <span class="label email-label">Email: </span>
-    <a href="mailto:{{ email }}" class="email data-span">{{ email }}</a>
-    <input type="text" title="Email" class="fn-edit-input hidden" value="{{ email }}" data-field="email">
+    <span class="label site-label">Website: </span>
+    <a href="{{ site }}" class="site data-span">{{ site }}</a>
+    <input type="text" title="Website" class="fn-edit-input hidden" value="{{ site }}" data-field="site">
 </div>
 <div class="list-item-row">
     <span class="label city-label">City: </span>

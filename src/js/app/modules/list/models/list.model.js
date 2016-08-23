@@ -8,8 +8,8 @@ define(function(require) {
             firstName: '',
             lastName: '',
             photo: 'dummy.png',
-            phone: '',
-            email: '',
+            site: '',
+            bdate: '',
             city: '',
             bio: ''
         },
