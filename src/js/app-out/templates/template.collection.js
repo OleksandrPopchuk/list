@@ -13,7 +13,7 @@ Handlebars.registerPartial("list.item.details.hbs", this["List"]["list.item.deta
     + alias4(((helper = (helper = helpers.photo || (depth0 != null ? depth0.photo : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"photo","hash":{},"data":data}) : helper)))
     + "\" alt=\""
     + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
-    + "\">\r\n        <input type=\"file\" class=\"photo-upload fn-photo-upload\">\r\n    </div>\r\n    <span class=\"name data-span\">\r\n        <span class=\"first-name\">"
+    + "\">\r\n    </div>\r\n    <span class=\"name data-span\">\r\n        <span class=\"first-name\">"
     + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
     + "</span>\r\n        <span class=\"last-name\">"
     + alias4(((helper = (helper = helpers.lastName || (depth0 != null ? depth0.lastName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"lastName","hash":{},"data":data}) : helper)))

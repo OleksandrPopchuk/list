@@ -24,8 +24,7 @@ define(function(require){
             'click .fn-contact-edit': 'activateEditMode',
             'click .fn-contact-cancel': 'deactivateEditMode',
             'click .fn-contact-save': 'saveContact',
-            'click .fn-edit-photo.editable': 'editPhoto',
-            'change .fn-photo-upload': 'uploadPhoto'
+            'click .fn-edit-photo.editable': 'editPhoto'
         },
 
         events: function() {
@@ -97,7 +96,6 @@ define(function(require){
 
         saveContact: function() {
             var $editInputs = this.$el.find('.fn-edit-input'),
-                $photoInput = this.$el.find('.fn-photo-upload'),
                 input,
                 value;
 
@@ -108,10 +106,7 @@ define(function(require){
                 this.model.set(input.dataset.field, value);
             }.bind(this));
 
-            if (this.photoChanged) {
-                this.model.set('photo', $photoInput[0].files[0].name);
-                this.photoChanged = false;
-            }
+            this.model.set('photo', this.imageLink);
 
             this.model.save();
 
@@ -124,23 +119,18 @@ define(function(require){
         },
 
         editPhoto: function() {
-            this.$el.find('.fn-photo-upload')[0].click();
+            this.imageLink = window.prompt('Please insert link to image');
+            this.savePhoto();
         },
 
-        uploadPhoto: function(e) {
-            var fileType = e.target.files[0].type,
-                fileName = e.target.files[0].name,
-                $photoEl = this.$el.find('.photo'),
-                srcPath = $photoEl.attr('src').match(/(.*\/)/g);
+        savePhoto: function() {
+            var $photoEl = this.$el.find('.photo');
 
-            if (fileType.indexOf('image/') > -1) {
-                if (fileName !== this.model.get('photo')) {
-                    this.photoChanged = true;
-                    $photoEl.attr('src', srcPath + fileName);
-                }
-            } else {
-                console.log('File uploaded is not an image');
+            if (!this.imageLink) {
+                return;
             }
+
+            $photoEl.attr('src', this.imageLink);
         },
 
         handleRemoveContact: function() {
