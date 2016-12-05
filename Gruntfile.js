@@ -20,7 +20,10 @@ module.exports = function (grunt) {
                     {expand: true, cwd: 'src/assets/imgs', src: ['**'], dest: 'dest/assets/imgs'},
                     {expand: true, cwd: 'src/assets/fonts', src: ['**'], dest: 'dest/assets/fonts'},
                     {expand: true, cwd: 'src/js/libs', src: ['**'], dest: 'dest/js/libs'},
-                    {expand: true, cwd: 'src/js/app', src: ['**'], dest: 'src/js/app-out'}
+                    {expand: true, cwd: 'src/js/app', src: ['**'], dest: 'src/js/app-out'},
+                    {expand: true, cwd: 'src/js/app', src: ['**'], dest: 'dest/js/app'},
+                    {expand: true, cwd: 'src', src: ['SpecRunner.html'], dest: 'dest'},
+                    {expand: true, cwd: 'src/js/app/tests', src: ['**'], dest: 'dest/tests'}
                 ]
             }
         },
@@ -42,6 +45,7 @@ module.exports = function (grunt) {
                 regexp: true,
                 undef: true,
                 evil: true,
+                jasmine: true,
                 globals: {
                     requirejs: true,
                     require: true,
@@ -50,6 +54,7 @@ module.exports = function (grunt) {
                     module: true,
                     document: true,
                     window: true,
+                    jasmine: true,
                     define: true
                 },
                 ignores: [
@@ -145,10 +150,52 @@ module.exports = function (grunt) {
             }
         },
 
+        jasmine: {
+            src: 'src/js/app/*.js',
+            options: {
+                vendor: [
+                    'src/js/libs/jquery.min.js',
+                    'src/js/libs/require.min.js',
+                    'src/js/libs/underscore.min.js',
+                    'src/js/libs/handlebars.js'
+                ],
+                specs: 'src/js/app/tests/*.js',
+                template: require('grunt-template-jasmine-requirejs'),
+                templateOptions: {
+                    requireConfig: {
+                        baseUrl:"src/js/app",
+                        paths:{
+                            "jquery":"../libs/jquery.min",
+                            "underscore":"../libs/underscore.min",
+                            "backbone":"../libs/backbone.min",
+                            "handlebars":"../libs/handlebars",
+                            "handlebars.runtime":"../libs/handlebars.runtime",
+                            "template.collection": "templates/template.collection",
+                            "jasmine": "../libs/jasmine/lib/jasmine-2.5.2/jasmine.js",
+                            "jasmine-html": "../libs/jasmine/lib/jasmine-2.5.2/jasmine-html.js"
+                        },
+
+                        shim:{
+                            "backbone":{
+                                "deps":["underscore", "jquery"],
+                                "exports":"Backbone"
+                            },
+                            "jasmine-html": {
+                                deps : ['jasmine']
+                            },
+                            "jasmine-boot": {
+                                deps : ['jasmine', 'jasmine-html']
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
         watch: {
             scripts: {
                 files: ['src/js/app/**/*.js', 'src/js/libs/**/*.js'],
-                tasks: ['jshint', 'handlebars', 'requirejs', 'uglify', 'copy']
+                tasks: ['jshint', 'handlebars', 'requirejs', 'uglify', 'copy', 'jasmine']
             },
             css: {
                 files: ['src/assets/sass/**/*.scss'],
@@ -186,9 +233,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-debug-task');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
 
     grunt.registerTask('default',
-        ['jshint', 'clean', 'copy', 'htmlmin', 'uglify', 'sass', 'handlebars', 'requirejs', 'watch']);
+        ['jshint', 'clean', 'copy', 'htmlmin', 'uglify', 'sass', 'handlebars', 'requirejs', 'jasmine', 'watch']);
 
     grunt.registerTask('server', ['connect:apollo']);
 
